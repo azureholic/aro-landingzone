@@ -1,0 +1,62 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "environmentName": {
+            "value": "non-prod"
+        },
+        "location": {
+            "value": "<deployment location>"
+        },
+        "vnetHubSubscriptionId":{ 
+            "value": "<subscription of the hub vnet>"
+        },
+        
+        "vnetHubResourceGroupName": {
+            "value": "<resourcegroup of the hub vnet>"
+        },
+        "vnetHubName": {
+            "value": "<name of the hub vnet>"
+        },
+        
+        "lzNetworkResourceGroupName": {
+            "value": "rg-aro"
+        },
+        "spokeVnetName": {
+            "value": "vnet-aro"
+        },
+        "spokeVnetAddressPrefix":{ 
+            "value": "10.123.0.0/16"
+        },
+        "spokeSubnets": { 
+            "value" : [
+                {
+                    "name": "masterSubnet",
+                    "properties" : {
+                        "addressPrefix": "10.123.1.0/27"
+                    }
+                },
+                {
+                    "name": "workerSubnet",
+                    "properties" : {
+                        "addressPrefix": "10.123.2.0/24"
+                
+                    }
+                },
+                {
+                    "name": "privateLinkSubnet",
+                    "properties": {
+                        "addressPrefix": "10.123.3.0/24",
+                        "privateLinkServiceNetworkPolicies": "Disabled"
+                    }
+                }
+           ]
+        },
+        "tagValues": {
+            "value": {
+                "env":"non-prod",
+                "project":"aro"
+            }
+        }
+    }
+}
