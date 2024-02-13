@@ -3,27 +3,27 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "environmentName": {
-            "value": "non-prod"
+            "value": "<e.g. non-prod>"
         },
         "location": {
-            "value": "<deployment location>"
+            "value": "<Azure Region>"
         },
         "vnetHubSubscriptionId":{ 
-            "value": "<subscription of the hub vnet>"
+            "value": "<subscription id of Hub VNET>"
         },
         
         "vnetHubResourceGroupName": {
-            "value": "<resourcegroup of the hub vnet>"
+            "value": "<resourcegroup of the Hub vnet>"
         },
         "vnetHubName": {
             "value": "<name of the hub vnet>"
         },
         
         "lzNetworkResourceGroupName": {
-            "value": "rg-aro"
+            "value": "<resourcegroup where ARO will be deployed>"
         },
         "spokeVnetName": {
-            "value": "vnet-aro"
+            "value": "<name of the ARO Spoke vnet>"
         },
         "spokeVnetAddressPrefix":{ 
             "value": "10.123.0.0/16"
@@ -33,21 +33,25 @@
                 {
                     "name": "masterSubnet",
                     "properties" : {
-                        "addressPrefix": "10.123.1.0/27"
+                        "addressPrefix": "10.123.1.0/27",
+                        "privateEndpointNetworkPolicies": "Disabled",
+                        "privateLinkServiceNetworkPolicies": "Disabled"
                     }
                 },
                 {
                     "name": "workerSubnet",
                     "properties" : {
-                        "addressPrefix": "10.123.2.0/24"
-                
+                        "addressPrefix": "10.123.2.0/24",
+                        "privateEndpointNetworkPolicies": "Disabled",
+                        "privateLinkServiceNetworkPolicies": "Enabled"
                     }
                 },
                 {
                     "name": "privateLinkSubnet",
                     "properties": {
                         "addressPrefix": "10.123.3.0/24",
-                        "privateLinkServiceNetworkPolicies": "Disabled"
+                        "privateEndpointNetworkPolicies": "Disabled",
+                        "privateLinkServiceNetworkPolicies": "Enabled"
                     }
                 }
            ]
@@ -57,6 +61,14 @@
                 "env":"non-prod",
                 "project":"aro"
             }
+        },
+        "dnsServers":{
+            "value" : [
+                "<ip address of custom DNS>"
+            ]
+        },
+        "firewallIpAddress": {
+            "value" : "<ip of your NVA used for a route table on ARO network>"
         }
     }
 }

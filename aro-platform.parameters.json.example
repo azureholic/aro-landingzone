@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "name": {
+      "value": "<name of the cluster>"
+    },
+    "vnetName": {
+      "value": "<vnet name of the cluster>"
+    },
+    "masterSubnetName": {
+      "value": "masterSubnet"
+    },
+    "workerSubnetName": {
+      "value": "workerSubnet"
+    },
+    "clusterDomainNamePrefix": {
+      "value": "<domain prefix of the cluster>"
+    },
+    "clientId": {
+      "value": "<client id of the service principal, to be provided by Azure Platform team>"
+    },
+    "clientSecret": {
+      "value": "<client secret of the service principal, to be provided by Azure Platform team>"
+    },
+    "tagValues": {
+      "value": {
+          "env":"non-prod",
+          "project":"aro"
+      }
+  }
+  }
+}
